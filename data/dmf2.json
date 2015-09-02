@@ -12,8 +12,15 @@
       "name": "HDRServices",
       "size": 100
     },{
+      "name": "HDMServices",
+      "size": 100
+    },{
       "name": "DMFServices",
       "size": 100
+    },{
+      "name": "TestServices",
+      "size": 100,
+      "new": "true"
     }]
   }]
 }
