@@ -1,0 +1,19 @@
+{
+  "name": "DMF",
+  "children": [{
+    "name": "view",
+    "size": 100
+    }, {
+    "name": "controller",
+    "size": 100
+    }, {
+    "name": "model",
+    "children": [{
+      "name": "HDRServices",
+      "size": 100
+    },{
+      "name": "DMFServices",
+      "size": 100
+    }]
+  }]
+}
