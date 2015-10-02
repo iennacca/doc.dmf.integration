@@ -1,25 +1,39 @@
 {
   "name": "DMF",
+  "description": "Main application",
   "children": [{
-    "name": "view",
-    "size": 100
-    }, {
-    "name": "controller",
-    "size": 100
-    }, {
-    "name": "model",
+    "name": "View",
     "children": [{
-      "name": "HDRServices",
-      "size": 100
+      "name": "Decision"
     },{
+      "name": "Document"
+    },{
+      "name": "Meeting"
+    },{
+      "name": "Shared"
+    }]
+    },{
+    "name": "Controller",
+    "children": [{
+      "name": "CommonController"
+    },{
+      "name": "DecisionController"
+    },{
+      "name": "MeetingController"
+    },{
+      "name": "ErrorController"
+    }]
+    },{
+    "name": "Model",
+    "description": "Data model isolated from all business rules; pure data layer. Unfortunately, has DM-specific artifacts already in this layer; will have to be replaced.",
+    "children": [{
       "name": "HDMServices",
-      "size": 100
+      "description": "This is a web service description."
     },{
       "name": "DMFServices",
-      "size": 100
+      "description": "This is another description"
     },{
       "name": "TestServices",
-      "size": 100,
       "new": "true"
     }]
   }]

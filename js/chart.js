@@ -1,6 +1,6 @@
 
-var width = 960,
-    height = 700,
+var width = 600,
+    height = 480,
     radius = Math.min(width, height) / 2;
 
 var x = d3.scale.linear()
@@ -11,14 +11,14 @@ var y = d3.scale.linear()
 
 var color = d3.scale.category20c();
 
-var svg = d3.select("body").append("svg")
+var svg = d3.select(".chartviewport").append("svg")
     .attr("width", width)
     .attr("height", height)
     .append("g")
     .attr("transform", "translate(" + width / 2 + "," + (height / 2 + 10) + ")");
 
 var partition = d3.layout.partition()
-    .value(function(d) { return d.size; });
+    .value(function(d) { return d.size ? d.size : 1; });
 
 var arc = d3.svg.arc()
     .startAngle(function(d) { return Math.max(0, Math.min(2 * Math.PI, x(d.x))); })
@@ -43,6 +43,7 @@ d3.json("data/dmf2.json", function(error, root) {
         .attr("dy", ".35em") // vertical-align
         .text(function(d) { return d.name; });
 
+
     function click(d) {
         // fade out all text elements
         text.transition().attr("opacity", 0);
@@ -62,6 +63,9 @@ d3.json("data/dmf2.json", function(error, root) {
                         .attr("x", function(d) { return y(d.y); });
                 }
             });
+
+        d3.select(".textviewport")
+            .text(d.description ? d.description : d.name);
     }
 });
 
