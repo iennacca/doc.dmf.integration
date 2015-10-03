@@ -1,7 +1,7 @@
 
 var width = 600,
     height = 480,
-    radius = Math.min(width, height) / 2;
+    radius = Math.min(width, height) / 2.5;
 
 var x = d3.scale.linear()
     .range([0, 2 * Math.PI]);
@@ -34,7 +34,9 @@ d3.json("data/dmf2.json", function(error, root) {
     var path = g.append("path")
         .attr("d", arc)
         .style("fill", function(d) { return color((d.children ? d : d.parent).name); })
-        .on("click", click);
+        .on("click", click)
+        .on("mouseover", mouseover)
+        .on("mouseout", mouseout);
 
     var text = g.append("text")
         .attr("transform", function(d) { return "rotate(" + computeTextRotation(d) + ")"; })
@@ -42,7 +44,6 @@ d3.json("data/dmf2.json", function(error, root) {
         .attr("dx", "6") // margin
         .attr("dy", ".35em") // vertical-align
         .text(function(d) { return d.name; });
-
 
     function click(d) {
         // fade out all text elements
@@ -63,11 +64,17 @@ d3.json("data/dmf2.json", function(error, root) {
                         .attr("x", function(d) { return y(d.y); });
                 }
             });
+    }
 
+    function mouseover(d) {
         d3.select(".textviewport")
             .text(d.description ? d.description : d.name);
     }
-});
+
+    function mouseout(d) {
+        d3.select(".textviewport")
+            .text("");
+    }});
 
 d3.select(self.frameElement).style("height", height + "px");
 
