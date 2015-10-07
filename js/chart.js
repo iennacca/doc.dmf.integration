@@ -11,7 +11,7 @@ var y = d3.scale.linear()
 
 var color = d3.scale.category20c();
 
-var svg = d3.select(".chartviewport").append("svg")
+var svg = d3.select("#chartviewport").append("svg")
     .attr("width", width)
     .attr("height", height)
     .append("g")
@@ -67,13 +67,13 @@ d3.json("data/dmf2.json", function(error, root) {
     }
 
     function mouseover(d) {
-        d3.select(".textviewport")
-            .text(d.description ? d.description : d.name);
+        d3.select("#nodeName").text(d.name);
+        d3.select("#nodeDescription").text(d.description);
     }
 
     function mouseout(d) {
-        d3.select(".textviewport")
-            .text("");
+        d3.select("#nodeName").text("Name");
+        d3.select("#nodeDescription").text("Description");
     }});
 
 d3.select(self.frameElement).style("height", height + "px");
